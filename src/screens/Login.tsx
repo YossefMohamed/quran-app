@@ -19,7 +19,7 @@ import {
 import LoginHeader from "../components/LoginHeader";
 function LoginScreen() {
   return (
-    <ScrollView>
+    <>
       <LoginHeader />
       <LoginContainer>
         <ImageContainer source={images.login_avatar} resizeMode="contain" />
@@ -92,7 +92,7 @@ function LoginScreen() {
           />
         </LinkContainer>
       </LoginContainer>
-    </ScrollView>
+    </>
   );
 }
 

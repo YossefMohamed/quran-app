@@ -1,7 +1,7 @@
 import styled from "styled-components";
 export const LoginContainer = styled.View`
-  margin-top: 20%;
-  height: 80%;
+  margin-top: 10%;
+  height: 90%;
   padding: 0 ${(props) => props.theme.space[3]};
 `;
 export const ImageContainer = styled.Image`
@@ -25,7 +25,7 @@ export const CustomScreenHeader = styled.Text`
 `;
 
 export const CaptionContainer = styled.View`
-  margin: ${(props) => props.theme.space[3]} 0;
+  padding: ${(props) => props.theme.space[3]} 0;
 `;
 export const HeaderBold = styled.Text`
   color: ${(props) => props.theme.colors.brand.primary};
