@@ -24,12 +24,13 @@ export const colors = {
   bg: {
     primary: "#f8f8f8",
     secondary: "#ffffff",
+    tertiary: "#000",
   },
   text: {
     primary: "#262626",
     secondary: "#757575",
     disabled: "#9C9C9C",
-    link: "#6eead6",
+    link: "#6ea4ea",
     inverse: "#FFFFFF",
     error: "#D0421B",
     success: "#138000",
