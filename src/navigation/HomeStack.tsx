@@ -8,6 +8,9 @@ import LoginScreen from "../screens/login/Login";
 import QuranScreen from "../screens/quran/QuranScreen";
 import PrayerScreen from "../screens/prayer/PrayerScreen";
 import styled from "styled-components";
+import ChapterScreen from "../screens/chapter/ChapterScreen";
+import QuranStack from "./QuranStack";
+import AzkarStack from "./AzkarStack";
 
 const Tab = createBottomTabNavigator();
 
@@ -24,7 +27,7 @@ const HomeStack = () => {
             height: 50,
             position: "relative",
           },
-          header(props) {},
+          headerShown: false,
         })}
       >
         <Tab.Screen
@@ -49,7 +52,30 @@ const HomeStack = () => {
         />
 
         <Tab.Screen
-          name="QuranScreen"
+          name="QuranStack"
+          options={{
+            tabBarIcon: ({ focused }: { focused: boolean }) =>
+              focused ? (
+                <>
+                  <Ionicons
+                    name="person-add"
+                    size={30}
+                    color={colors.brand.primary}
+                  />
+                </>
+              ) : (
+                <Ionicons
+                  name="book-sharp"
+                  size={25}
+                  color={colors.brand.dark}
+                />
+              ),
+          }}
+          component={QuranStack}
+        />
+
+        <Tab.Screen
+          name="AzkarStack"
           options={{
             tabBarIcon: ({ focused }: { focused: boolean }) =>
               focused ? (
@@ -68,7 +94,7 @@ const HomeStack = () => {
                 />
               ),
           }}
-          component={QuranScreen}
+          component={AzkarStack}
         />
 
         <Tab.Screen

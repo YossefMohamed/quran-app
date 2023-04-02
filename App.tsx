@@ -1,5 +1,5 @@
 import { StatusBar as ExpoStatusBar } from "expo-status-bar";
-import styled, { ThemeProvider } from "styled-components/native";
+import styled, { ThemeProvider } from "styled-components";
 
 import { theme } from "./src/infrastructure/theme";
 import { useFonts as useLato, Lato_400Regular } from "@expo-google-fonts/lato";
@@ -15,10 +15,18 @@ import { SafeArea } from "./src/components/safeArea";
 import LoginHeader from "./src/components/LoginHeader";
 import LoginScreen from "./src/screens/login/Login";
 import SignupScreen from "./src/screens/signup/Signup";
-import HomeScreen from "./src/screens/home/HomeScreen";
 import HomeStack from "./src/navigation/HomeStack";
-
+import { QueryClient, QueryClientProvider } from "react-query";
 export default function App() {
+  const queryClient = new QueryClient({
+    defaultOptions: {
+      queries: {
+        refetchOnWindowFocus: false,
+        retry: false,
+      },
+    },
+  });
+
   const Stack = createStackNavigator();
   const [LatoLoaded] = useLato({
     Lato_400Regular,
@@ -31,7 +39,7 @@ export default function App() {
     return null;
   }
   return (
-    <>
+    <QueryClientProvider client={queryClient}>
       <ThemeProvider theme={theme}>
         <SafeArea>
           <NavigationContainer>
@@ -69,7 +77,7 @@ export default function App() {
         </SafeArea>
       </ThemeProvider>
       <ExpoStatusBar style="auto" />
-    </>
+    </QueryClientProvider>
   );
 }
 const MainContainer = styled.View`

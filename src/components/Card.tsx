@@ -8,10 +8,9 @@ type Props = {
 };
 
 const Card: FC<Props> = ({ image, children }) => {
-  console.log(image, "image");
   return (
     <CardContainer>
-      {image && <ImageContainer source={image} />}
+      {image && <ImageContainer source={image} resizeMode="cover" />}
       {<Overlay></Overlay>}
       {children}
     </CardContainer>
@@ -23,7 +22,7 @@ const Overlay = styled.View`
   z-index: -1;
   width: 100%;
   height: 100%;
-  opacity: 0.3;
+  opacity: 0.4;
 `;
 const CardContainer = styled.View`
   z-index: 99999;

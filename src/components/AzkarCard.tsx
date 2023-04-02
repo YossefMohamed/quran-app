@@ -1,24 +1,28 @@
 import { Ionicons } from "@expo/vector-icons";
 import React, { FC } from "react";
 import styled from "styled-components";
+import { colors } from "../infrastructure/theme/colors";
 import { Text } from "./typography";
 type Props = {
   icon: string;
   onPress: () => void;
   title: string;
 };
-const CatCard: FC<Props> = ({ icon, title, onPress }) => {
+const AzkarCard: FC<Props> = ({ icon, title, onPress }) => {
   return (
     <CatContainer onPress={onPress}>
-      <Ionicons name={icon} size={35} color="black" />
-      <Text variant="caption">{title}</Text>
+      <Ionicons name={icon} size={35} color={colors.brand.primary} />
+      <Text variant="hint" style={{ textAlign: "center" }}>
+        {title}
+      </Text>
     </CatContainer>
   );
 };
 
 const CatContainer = styled.TouchableOpacity`
-  width: 24%;
-  padding: ${(props) => props.theme.space[2]} ${(props) => props.theme.space[2]};
+  width: 48%;
+  padding: ${(props) => props.theme.space[3]} ${(props) => props.theme.space[2]};
+  margin: ${(props) => props.theme.space[2]} 1%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -27,4 +31,4 @@ const CatContainer = styled.TouchableOpacity`
   elevation: 4;
 `;
 
-export default CatCard;
+export default AzkarCard;

@@ -4,35 +4,56 @@ import styled from "styled-components";
 import { colors } from "../infrastructure/theme/colors";
 import { Text } from "./typography";
 
-const VerseCard = ({}) => {
+const SingleAzkarCard = ({
+  title,
+  description,
+  onPressPlay,
+  soundState,
+}: {
+  soundState: string;
+  title: string;
+  description: string;
+  onPressPlay?: () => void;
+}) => {
+  console.log(soundState);
   return (
     <CardContainer>
       <Row>
         <CardImage name="book-outline" size={35} color="black"></CardImage>
         <Column>
-          <Text variant="caption">Verse to remember</Text>
+          <Text variant="caption">أذكار</Text>
           <Text variant="caption" color={colors.text.secondary}>
-            Al-Baq`arah 221
+            {title}
           </Text>
         </Column>
         <IconsRow>
-          <Ionicons name="play" size={25}></Ionicons>
+          {soundState === "loading" ? (
+            <Text variant="caption">loading</Text>
+          ) : (
+            <Ionicons
+              name={soundState}
+              size={25}
+              onPress={onPressPlay}
+            ></Ionicons>
+          )}
           <Ionicons name="ios-share-social" size={25}></Ionicons>
         </IconsRow>
       </Row>
-      <Row>
+      <ContentRow
+        contentContainerStyle={{
+          display: "flex",
+          flexDirection: "row",
+          justifyContent: "space-between",
+          alignItems: "center",
+          flex: 1,
+        }}
+      >
         <ArabicContainer>
-          <Text variant="body" style={{ textAlign: "center" }}>
-            إِنَّمَا يَأۡمُرُكُم بِٱلسُّوٓءِ وَٱلۡفَحۡشَآءِ وَأَن تَقُولُواْ
-            عَلَى ٱللَّهِ مَا لَا تَعۡلَمُونَ
+          <Text variant="header" style={{ textAlign: "center" }}>
+            {description}
           </Text>
         </ArabicContainer>
-      </Row>
-      <Row>
-        <Text variant="label" style={{ textAlign: "center" }}>
-          "He only orders you to evil and immorality what.....""
-        </Text>
-      </Row>
+      </ContentRow>
     </CardContainer>
   );
 };
@@ -43,11 +64,16 @@ const CardContainer = styled.TouchableOpacity`
   margin: ${(props) => props.theme.space[2]} 0;
   padding: ${(props) => props.theme.space[2]};
   border-radius: 10px;
+  flex: 1;
 `;
 const Row = styled.View`
   display: flex;
   flex-direction: row;
   justify-content: center;
+`;
+
+const ContentRow = styled.ScrollView`
+  flex: 1;
 `;
 const CardImage = styled(Ionicons)`
   padding: ${(props) => props.theme.space[1]};
@@ -74,4 +100,4 @@ const IconsRow = styled.View`
   justify-content: flex-end;
   align-items: center;
 `;
-export default VerseCard;
+export default SingleAzkarCard;

@@ -91,13 +91,10 @@ function HomeScreen({ navigation }: any) {
           </SecCardContainer>
 
           <ThirdCardContainer>
-            <Card>
+            <Card image={images.calendar}>
               <>
-                <Text variant="caption" color="white">
-                  1444 AH
-                </Text>
                 <Text variant="hint" color="white">
-                  06 Ramadan
+                  06 Ramadan, 1444
                 </Text>
                 <Text variant="caption" color="white">
                   Friday, July 23, 2020
@@ -109,7 +106,11 @@ function HomeScreen({ navigation }: any) {
       </Row>
 
       <Row>
-        <CatCard icon={"alarm-outline"} title="Prayer Time" />
+        <CatCard
+          icon={"alarm-outline"}
+          title="Prayer Time"
+          onPress={() => navigation.negative("QuranScreen")}
+        />
         <CatCard icon={"book-outline"} title="Read Quran" />
         <CatCard icon={"moon-outline"} title="Duaa" />
         <CatCard icon={"compass-outline"} title="Qubila" />

@@ -17,10 +17,11 @@ export const CardContainer = styled.View`
 `;
 
 export const SecCardContainer = styled.View`
-  height: 69%;
+  flex: 1;
+  margin-bottom: 10px;
 `;
 export const ThirdCardContainer = styled.View`
-  height: 29%;
+  height: 40%;
 `;
 export const Row = styled.View`
   display: flex;
