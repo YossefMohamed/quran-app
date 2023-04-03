@@ -36,4 +36,11 @@ export default class Quran {
       method: "GET",
     });
   }
+
+  static getVerseMeaningByIdAndSurah(id: number) {
+    return requestSurah({
+      url: `/ayah/${id}/ar.muyassar`,
+      method: "GET",
+    });
+  }
 }

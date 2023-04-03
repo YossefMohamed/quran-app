@@ -39,7 +39,11 @@ function QuranScreen({ navigation }: any) {
           data={chaptersList.chapters}
           renderItem={({ item }: any) => (
             <SurahCard
-              onPress={() => navigation.navigate("ChapterScreen")}
+              onPress={() =>
+                navigation.navigate("ChapterScreen", {
+                  surah: item.id,
+                })
+              }
               arabicName={item.name_arabic}
               englishName={item.name_complex}
               id={item.id}

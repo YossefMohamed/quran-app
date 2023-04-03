@@ -45,7 +45,11 @@ const SingleAzkarScreen = ({ route, navigation }: any) => {
     }
   }
 
-  async function stopSound() {}
+  async function stopSound() {
+    setSound("play-outline");
+    await sound.pauseAsync();
+    setSoundAudio(new Audio.Sound());
+  }
   const [current, setCurrent] = React.useState(0);
 
   const [currentAzkar, setCurrentAzkar] = React.useState(0);
@@ -60,9 +64,6 @@ const SingleAzkarScreen = ({ route, navigation }: any) => {
       }
     }
   }, [current, singleAzkarList, sound]);
-
-  console.log(currentAzkar, singleAzkarList[currentAzkar]);
-  console.log(currentAzkar, singleAzkarList[currentAzkar]);
 
   return (
     <Container>
@@ -82,7 +83,10 @@ const SingleAzkarScreen = ({ route, navigation }: any) => {
               <Row>
                 <CustomButton
                   text="التالي"
-                  onPress={() => setCurrentAzkar((prev) => ++prev)}
+                  onPress={() => {
+                    setCurrentAzkar((prev) => ++prev);
+                    stopSound();
+                  }}
                 />
               </Row>
             )}
@@ -99,7 +103,10 @@ const SingleAzkarScreen = ({ route, navigation }: any) => {
               <Row>
                 <CustomButton
                   text="رجوع"
-                  onPress={() => setCurrentAzkar((prev) => --prev)}
+                  onPress={() => {
+                    setCurrentAzkar((prev) => --prev);
+                    stopSound();
+                  }}
                 />
               </Row>
             )}
@@ -108,7 +115,11 @@ const SingleAzkarScreen = ({ route, navigation }: any) => {
             <CustomButton
               link
               text="الرجوع للأذكار"
-              onPress={() => navigation.navigate("AzkarScreen")}
+              onPress={() => {
+                stopSound();
+
+                navigation.navigate("AzkarScreen");
+              }}
             />
           </Row>
         </>

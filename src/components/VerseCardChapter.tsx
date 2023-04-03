@@ -8,7 +8,9 @@ import { Audio } from "expo-av";
 const VerseCardChapter: React.FC<{
   arabic: string;
   english: string;
-}> = ({ arabic, english }) => {
+  tafseer?: boolean;
+  infoClick?: () => void;
+}> = ({ arabic, english, infoClick, tafseer }) => {
   const [sound, setSound] = React.useState<any>();
 
   async function playSound() {
@@ -33,23 +35,31 @@ const VerseCardChapter: React.FC<{
 
       <Row>
         <EnglishContainer>
-          <Text variant="label">{english} </Text>
+          <Text variant="body">{english} </Text>
         </EnglishContainer>
       </Row>
       <Row>
-        <IconsRow>
-          <Ionicons
-            name="play"
-            size={25}
-            color={colors.brand.primary}
-            onPress={playSound}
-          ></Ionicons>
-          <Ionicons
-            name="ios-share-social"
-            size={25}
-            color={colors.brand.primary}
-          ></Ionicons>
-        </IconsRow>
+        {!tafseer && (
+          <IconsRow>
+            <Ionicons
+              name="information-circle-sharp"
+              size={25}
+              color={colors.brand.primary}
+              onPress={infoClick}
+            ></Ionicons>
+            <Ionicons
+              name="play"
+              size={25}
+              color={colors.brand.primary}
+              onPress={playSound}
+            ></Ionicons>
+            <Ionicons
+              name="ios-share-social"
+              size={25}
+              color={colors.brand.primary}
+            ></Ionicons>
+          </IconsRow>
+        )}
       </Row>
     </CardContainer>
   );
