@@ -17,6 +17,10 @@ import LoginScreen from "./src/screens/login/Login";
 import SignupScreen from "./src/screens/signup/Signup";
 import HomeStack from "./src/navigation/HomeStack";
 import { QueryClient, QueryClientProvider } from "react-query";
+import React, { useEffect, useState } from "react";
+import * as Location from "expo-location";
+import { useLocationStore } from "./src/store/store";
+
 export default function App() {
   const queryClient = new QueryClient({
     defaultOptions: {
@@ -26,6 +30,23 @@ export default function App() {
       },
     },
   });
+
+  const [errorMsg, setErrorMsg] = useState("");
+  const { setLocation: setLocationFromStore } = useLocationStore();
+
+  useEffect(() => {
+    (async () => {
+      let { status } = await Location.requestForegroundPermissionsAsync();
+      console.log(status);
+      if (status !== "granted") {
+        setErrorMsg("Permission to access location was denied");
+        return;
+      }
+
+      let location = await Location.getCurrentPositionAsync({});
+      setLocationFromStore(location.coords.latitude, location.coords.longitude);
+    })();
+  }, []);
 
   const Stack = createStackNavigator();
   const [LatoLoaded] = useLato({
@@ -38,6 +59,7 @@ export default function App() {
   if (!oswaldLoaded || !LatoLoaded) {
     return null;
   }
+
   return (
     <QueryClientProvider client={queryClient}>
       <ThemeProvider theme={theme}>

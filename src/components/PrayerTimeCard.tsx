@@ -3,14 +3,22 @@ import styled from "styled-components";
 import { colors } from "../infrastructure/theme/colors";
 import { Text } from "./typography";
 
-const PrayerTimeCard = ({ selected = false }: { selected?: boolean }) => {
+const PrayerTimeCard = ({
+  selected = false,
+  salah,
+  time,
+}: {
+  selected?: boolean;
+  salah: string;
+  time: string;
+}) => {
   return (
     <CardContainer selected={selected}>
       <Text variant="label" color={selected ? colors.text.inverse : "black"}>
-        Fajr
+        {salah}
       </Text>
       <Text variant="label" color={selected ? colors.text.inverse : "black"}>
-        8:13 AM
+        {time}
       </Text>
       <Text variant="label" color={selected ? colors.text.inverse : "black"}>
         <Ionicons name="notifications-outline" size={24} />
